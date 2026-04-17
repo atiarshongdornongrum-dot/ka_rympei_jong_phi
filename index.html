@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ka Rympei Jong Phi Gallery</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-content">
+      <h1>🏡 Ka Rympei Jong Phi Gallery</h1>
+      <p class="tagline">Discover Your Dream Property</p>
+      <p class="subtitle">Premium properties with stunning views and modern amenities</p>
+    </div>
+  </header>
+
+  <nav class="navbar">
+    <ul>
+      <li><a href="#filters"><i class="fas fa-filter"></i> Filter</a></li>
+      <li><a href="#gallery"><i class="fas fa-images"></i> Gallery</a></li>
+      <li><a href="#booking"><i class="fas fa-calendar"></i> Book</a></li>
+      <li><a href="#contact"><i class="fas fa-phone"></i> Contact</a></li>
+      <li style="margin-left: auto;"><button onclick="promptAdminPassword()" style="background: #2563eb; color: white; padding: 8px 15px; border-radius: 6px; transition: all 0.3s ease; border: none; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 8px;" onmouseover="this.style.background='#1e40af'" onmouseout="this.style.background='#2563eb'"><i class="fas fa-cog"></i> Admin</button></li>
+    </ul>
+  </nav>
+
+  <!-- Filters at Top -->
+  <section id="filters" class="filters-section">
+    <div class="section-header">
+      <h2><i class="fas fa-filter"></i> Find Your Perfect Property</h2>
+      <p>Filter properties by your preferences</p>
+    </div>
+    <div class="filter-container">
+      <div class="filter-group">
+        <label for="filter-price">Max Price (₹)</label>
+        <input type="number" id="filter-price" placeholder="Enter maximum price">
+      </div>
+      <div class="filter-group">
+        <label for="filter-place">Location</label>
+        <input type="text" id="filter-place" placeholder="City or area">
+      </div>
+      <div class="filter-group">
+        <label for="filter-measurement">Size</label>
+        <input type="text" id="filter-measurement" placeholder="e.g., 2000 sq ft">
+      </div>
+      <button class="btn btn-primary" onclick="applyFilters()"><i class="fas fa-search"></i> Apply Filters</button>
+    </div>
+    <button class="btn btn-secondary" onclick="resetFilters()"><i class="fas fa-redo"></i> Clear Filters</button>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="gallery-section">
+    <div class="section-header">
+      <h2><i class="fas fa-home"></i> Property Gallery</h2>
+      <p>Curated selection of premium properties</p>
+    </div>
+    <div id="gallery-items" class="gallery-grid"></div>
+  </section>
+
+  <!-- Booking Section -->
+  <section id="booking" class="booking-section-dedicated">
+    <div class="booking-wrapper">
+      <div class="booking-intro">
+        <div class="section-header">
+          <h2><i class="fas fa-calendar-check"></i> Schedule Your Property Visit</h2>
+          <p>Book a personalized tour of your dream property</p>
+        </div>
+        <div class="booking-features">
+          <div class="booking-feature">
+            <i class="fas fa-clock"></i>
+            <h4>Flexible Timing</h4>
+            <p>Choose your preferred date for the visit</p>
+          </div>
+          <div class="booking-feature">
+            <i class="fas fa-user-tie"></i>
+            <h4>Expert Guidance</h4>
+            <p>Our team will guide you through the property</p>
+          </div>
+          <div class="booking-feature">
+            <i class="fas fa-phone-alt"></i>
+            <h4>Quick Confirmation</h4>
+            <p>We'll contact you to confirm the booking</p>
+          </div>
+        </div>
+      </div>
+      <div class="booking-form-wrapper">
+        <form id="booking-form" class="booking-form">
+          <h3><i class="fas fa-pen-fancy"></i> Complete Your Booking</h3>
+          <div class="form-group">
+            <label for="customer-name">Your Name <span class="required">*</span></label>
+            <input type="text" id="customer-name" placeholder="Enter your full name" required>
+          </div>
+          <div class="form-group">
+            <label for="customer-email">Email Address <span class="required">*</span></label>
+            <input type="email" id="customer-email" placeholder="your.email@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="customer-phone">Phone Number <span class="required">*</span></label>
+            <input type="tel" id="customer-phone" placeholder="+91-98765-43210" required>
+          </div>
+          <div class="form-group">
+            <label for="booking-date">Preferred Date <span class="required">*</span></label>
+            <input type="date" id="booking-date" required>
+          </div>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-check-circle"></i> Confirm Booking</button>
+        </form>
+        <div id="customer-schedule" class="booking-confirmation"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <footer id="contact" class="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3><i class="fas fa-map-marker-alt"></i> Location</h3>
+        <p>Shillong, Meghalaya</p>
+      </div>
+      <div class="footer-section">
+        <h3><i class="fas fa-envelope"></i> Email</h3>
+        <p><a href="mailto:owner@example.com">owner@RilipshonKharmalki@gmail.com</a></p>
+      </div>
+      <div class="footer-section">
+        <h3><i class="fas fa-phone"></i> Phone</h3>
+        <p><a href="tel:+919876543210">+91-9863781062</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Ka Rympei Jong Phi Gallery. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Password Modal -->
+  <div id="password-modal" class="admin-modal">
+    <div class="admin-modal-content" style="max-width: 400px;">
+      <div class="admin-modal-header">
+        <h2><i class="fas fa-lock"></i> Admin Access</h2>
+        <button class="admin-close-btn" onclick="closePasswordModal()">×</button>
+      </div>
+      <div style="padding: 30px;">
+        <p style="text-align: center; color: #666; margin-bottom: 20px;">Enter passcode to access admin panel</p>
+        <form onsubmit="verifyPassword(event)" style="display: flex; flex-direction: column; gap: 15px;">
+          <input type="password" id="password-input" placeholder="Enter passcode" required style="padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 1em;">
+          <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; padding: 12px;"><i class="fas fa-unlock"></i> Unlock</button>
+        </form>
+        <div id="password-error" style="color: #ef4444; text-align: center; margin-top: 10px; font-size: 0.9em;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Panel Modal -->
+  <div id="admin-modal" class="admin-modal">
+    <div class="admin-modal-content">
+      <div class="admin-modal-header">
+        <h2><i class="fas fa-cog"></i> Property Management</h2>
+        <button class="admin-close-btn" onclick="closeAdminPanel()">×</button>
+      </div>
+      
+      <div class="admin-tabs">
+        <button class="admin-tab-btn active" onclick="switchAdminTab('add-prop')">
+          <i class="fas fa-plus"></i> Add Property
+        </button>
+        <button class="admin-tab-btn" onclick="switchAdminTab('manage-prop')">
+          <i class="fas fa-list"></i> Manage Properties
+        </button>
+      </div>
+
+      <!-- Add Property Tab -->
+      <div id="add-prop" class="admin-tab-content active">
+        <h3>Add New Property</h3>
+        <form id="admin-form" onsubmit="submitAdminProperty(event)">
+          <textarea id="admin-description" placeholder="Property Description" rows="5" required style="width: 100%; padding: 10px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 0.95em; font-family: inherit; margin-bottom: 15px;"></textarea>
+          <div style="margin-top: 10px; padding: 15px; border: 2px dashed #e2e8f0; border-radius: 8px; text-align: center; cursor: pointer;" onclick="document.getElementById('admin-photo').click()">
+            <i class="fas fa-cloud-upload-alt"></i> Click to upload photo
+            <input type="file" id="admin-photo" accept="image/*" style="display: none;">
+          </div>
+          <div id="admin-preview" style="margin-top: 10px; text-align: center;"></div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+            <i class="fas fa-save"></i> Add Property
+          </button>
+        </form>
+      </div>
+
+      <!-- Manage Properties Tab -->
+      <div id="manage-prop" class="admin-tab-content">
+        <h3>Your Properties</h3>
+        <div id="admin-properties-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
